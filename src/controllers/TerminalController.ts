@@ -27,6 +27,10 @@ export class TerminalController {
         console.log('Catálogo atual:');
         console.log(this.catalogo.listarPokemons());
 
+        console.log('Busca por ID:');
+        const pokemonEncontrado = this.catalogo.buscarPorId(4);
+        console.log(pokemonEncontrado);
+
         this.catalogo.removerPokemon(25);
 
         console.log('Catálogo após remoção:');

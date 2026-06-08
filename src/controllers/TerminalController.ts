@@ -7,15 +7,33 @@ export class TerminalController {
     public async executar(): Promise<void> {
         console.log('Pokédex TypeScript Lite iniciada!');
 
-        const pokemon = await buscarPokemon('pikachu');
-
-        if (pokemon !== null) {
-            this.catalogo.adicionarPokemon(pokemon);
-            console.log('Pokémon adicionado ao catálogo:');
-            console.log(pokemon);
+        const pikachu = await buscarPokemon('pikachu');
+        if (pikachu !== null) {
+            this.catalogo.adicionarPokemon(pikachu);
         }
 
+        const charmander = await buscarPokemon('charmander');
+        if (charmander !== null) {
+            this.catalogo.adicionarPokemon(charmander);
+        }
+
+        const pikachuDuplicado = await buscarPokemon('pikachu');
+        if (pikachuDuplicado !== null) {
+            this.catalogo.adicionarPokemon(pikachuDuplicado);
+        }
+
+        await buscarPokemon('pokemon-inexistente');
+
         console.log('Catálogo atual:');
+        console.log(this.catalogo.listarPokemons());
+
+        console.log('Busca por ID:');
+        const pokemonEncontrado = this.catalogo.buscarPorId(4);
+        console.log(pokemonEncontrado);
+
+        this.catalogo.removerPokemon(25);
+
+        console.log('Catálogo após remoção:');
         console.log(this.catalogo.listarPokemons());
     }
 }
